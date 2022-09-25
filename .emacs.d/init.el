@@ -12,6 +12,7 @@
 (global-display-line-numbers-mode t)
 (dolist (mode '(org-mode-hook
 		term-mode-hook
+		treemacs-mode-hook
 		eshell-mode-hook))
    (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
@@ -210,6 +211,33 @@
 (use-package haskell-mode)
 (use-package lua-mode)
 (use-package markdown-mode)
+(use-package gdscript-mode
+  :init)
+
+;;lisp
+(use-package lsp-mode
+  :ensure nil
+  :commands (lsp lsp-deferred)
+  :init
+  :config
+  (lsp-enable-which-key-integration t))
+
+(use-package company
+  :after lsp-mode
+  :hook (lsp-mode . company-mode)
+  :bind (:map company-active-map
+         ("<tab>" . company-complete-selection))
+        (:map lsp-mode-map
+         ("<tab>" . company-indent-or-complete-common))
+  :custom
+  (company-minimum-prefix-length 1)
+  (company-idle-delay 0.0))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
+
+(use-package lsp-treemacs
+  :after lsp)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -217,7 +245,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(dired projectile org-bullets all-the-icons-dired which-key rainbow-delimiters doom-mode-line all-the-icons use-package doom-themes)))
+   '(lsp-treemacs lisp-treeemacs company-box company lsp-mode gdscript-mode dired projectile org-bullets all-the-icons-dired which-key rainbow-delimiters doom-mode-line all-the-icons use-package doom-themes)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -9,8 +9,8 @@
 - polkit
 - picom-jonaburg-git (AUR)
 - conky
-- albert (AUR)
 - starship
+- rofi
 - nitrogen (wallpaper)
 - mpv
 - ffmpeg
