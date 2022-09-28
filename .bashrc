@@ -47,7 +47,8 @@ alias feh='devour feh'
 alias libreoffice='devour libreoffice'
 alias code='devour code'
 
-
+#redshift
+alias red='redshift -O 4100'
 #cat
 alias cat='bat'
 

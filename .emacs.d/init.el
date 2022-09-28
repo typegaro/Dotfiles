@@ -22,7 +22,6 @@
 ;; font
 (set-face-attribute 'default nil :font "Mononoki Nerd Font" :height 125)
 
-
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
@@ -147,9 +146,17 @@
                               ("mp4" . "mpv")))
 
 ;;Org-mode
+
+(defun efs/org-font-setup ()
+  ;; Replace list hyphen with dot
+  (font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))
+(efs/org-font-setup)
+
 (defun efs/org-mode-setup()
   (org-indent-mode)
-  (variable-pitch-mode 1)
+  ;;(variable-pitch-mode 1)
   (visual-line-mode 1))
 
 (use-package org
@@ -157,7 +164,7 @@
   :config
   (setq org-ellipsis " ▾")
   (setq org-agenda-files
-	'("~/Org/Tasks.org")))
+	'("~/Org")))
 
 (use-package org-bullets
   :after org
@@ -167,6 +174,7 @@
   (setq visual-fill-column-width 100
         visual-fill-column-center-text t)
   (visual-fill-column-mode 1))
+
 
 (use-package visual-fill-column
   :hook (org-mode . efs/org-mode-visual-fill))
