@@ -77,11 +77,15 @@
        "d j" '(dired-jump :which-key "Dired jump to current")
        ;;Window
        "w s"   '(evil-window-vsplit :which-key "Open vertical split")
+       "w w"   '(evil-window-next :which-key "Move to the next window")
+       "w t"   '(term :which-key "Run terminal")
+       
        ;;font
        "="   '(text-scale-increase :which-key "Increase font")
        "-"   '(text-scale-decrease :which-key "Decrease font")
        ;;org-mode
        "TAB"   '(org-cycle :which-key "fould/unflould")
+       "l p" '(org-latex-preview :which-key "show latex in line")
        ;;org-agenda
        "o a"   '(org-agenda :which-key "Org agenda")
        "a l" '(org-agenda-list :which-key "Org agenda list")
@@ -164,7 +168,8 @@
   :config
   (setq org-ellipsis " ▾")
   (setq org-agenda-files
-	'("~/Org")))
+	'("~/Org"))
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.75)))
 
 (use-package org-bullets
   :after org
@@ -178,6 +183,7 @@
 
 (use-package visual-fill-column
   :hook (org-mode . efs/org-mode-visual-fill))
+
 
 ;; Projectile
 (use-package projectile
@@ -206,8 +212,6 @@
   (dashboard-setup-startup-hook)
   (dashboard-modify-heading-icons '((recents . "file-text")
 			      (bookmarks . "book"))))
-
-
 
 ;;Org bable
 (org-babel-do-load-languages
@@ -253,7 +257,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(lsp-treemacs lisp-treeemacs company-box company lsp-mode gdscript-mode dired projectile org-bullets all-the-icons-dired which-key rainbow-delimiters doom-mode-line all-the-icons use-package doom-themes)))
+   '(auctex lsp-treemacs lisp-treeemacs company-box company lsp-mode gdscript-mode dired projectile org-bullets all-the-icons-dired which-key rainbow-delimiters doom-mode-line all-the-icons use-package doom-themes)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
