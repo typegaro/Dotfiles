@@ -86,10 +86,14 @@
        ;;org-mode
        "TAB"   '(org-cycle :which-key "fould/unflould")
        "l p" '(org-latex-preview :which-key "show latex in line")
+       "o i t" '(org-toggle-inline-images :which-key "toggle in line img")
+       "s c" '(flyspell-mode :which-key "Active spell check")
        ;;org-agenda
        "o a"   '(org-agenda :which-key "Org agenda")
        "a l" '(org-agenda-list :which-key "Org agenda list")
        "t l"   '(org-todo-list :which-key "Org tasks")
+       ;;code 
+       "c c"   '(company-mode :which-key "Active IDE")
        )
 
 ;;Ivy
@@ -184,6 +188,8 @@
 (use-package visual-fill-column
   :hook (org-mode . efs/org-mode-visual-fill))
 
+;;org-img
+(setq org-image-actual-width nil)
 
 ;; Projectile
 (use-package projectile
@@ -225,7 +231,6 @@
 (use-package markdown-mode)
 (use-package gdscript-mode
   :init)
-
 ;;lisp
 (use-package lsp-mode
   :ensure nil
@@ -250,6 +255,19 @@
 
 (use-package lsp-treemacs
   :after lsp)
+(use-package lsp-ui)
+
+;;Java
+;;(use-package java
+;;  :ensure nil
+;;  :after lsp-java)
+(use-package lsp-java :config (add-hook 'java-mode-hook 'lsp))
+(use-package dap-mode :after lsp-mode :config (dap-auto-configure-mode))
+(use-package dap-java :ensure nil)
+(use-package helm-lsp)
+(use-package helm
+  :config (helm-mode))
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -257,7 +275,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(auctex lsp-treemacs lisp-treeemacs company-box company lsp-mode gdscript-mode dired projectile org-bullets all-the-icons-dired which-key rainbow-delimiters doom-mode-line all-the-icons use-package doom-themes)))
+   '(java lsp-ui helm-lps lsp-java lisp-java auctex lsp-treemacs lisp-treeemacs company-box company lsp-mode gdscript-mode dired projectile org-bullets all-the-icons-dired which-key rainbow-delimiters doom-mode-line all-the-icons use-package doom-themes)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
