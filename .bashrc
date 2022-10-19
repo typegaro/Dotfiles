@@ -23,11 +23,21 @@ export HISTCONTROL=ignoredups:erasedups           # no duplicate entries
 export PATH=$PATH:~/.local/bin/
 export PATH=${PATH}:/usr/lib/jvm/default/bin
 export PATH=$PATH:~/Scripts/
+export PATH=$PATH:~/Android/Sdk/tools/bin/
+export PATH=$PATH:~/Android/Sdk/tools/
+export PATH=$PATH:~/Android/Sdk/emulator
 export EXA_ICON_SPACING="2"
+export CHROME_EXECUTABLE='/usr/bin/chromium'
+export ANDROID_HOME=~/Android/Sdk
+#hyperland 
+export LIBVA_DRIVER_NAME=nvidia
+export XDG_SESSION_TYPE=wayland
+export GBM_BACKEND=nvidia-drm
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export WLR_NO_HARDWARE_CURSORS=1
 
 #git 
 alias config='/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME'
-
 
 # JP fcitx
 export GTK_IM_MODULE='fcitx'
@@ -35,7 +45,9 @@ export QT_IM_MODULE='fcitx'
 export SDL_IM_MODULE='fcitx'
 export XMODIFIERS='@im=fcitx'
 
-
+#andoird
+alias phone='emulator -avd Pixel_3a_API_33_x86_64'
+alias phone-list='emulator -list-avds'
 
 # utility 
 alias src=' ls | grep'
@@ -54,7 +66,7 @@ alias cat='bat'
 
 #short cut
 alias bashrc='nvim ~/.bashrc'
-alias compose='setxkbmap -option compose:menu'
+alias compose='setxkbmap -layout us -option compose:menu'
 alias sshfix='TERM=linux'
 alias cclear='clear; colorscript random | tail -n +2'
 alias search="sudo find / -iname "

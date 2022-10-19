@@ -55,6 +55,7 @@ entry {
 
 inputbar {
   children: [prompt, entry];
+  raunded:4;
 }
 
 listview {

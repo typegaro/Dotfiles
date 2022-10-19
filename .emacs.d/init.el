@@ -13,6 +13,7 @@
 (dolist (mode '(org-mode-hook
 		term-mode-hook
 		treemacs-mode-hook
+		neotree-mode-hook
 		eshell-mode-hook))
    (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
@@ -208,7 +209,7 @@
   (setq dashboard-banner-logo-title "Emacs Is More Than A Text Editor!")
   (setq dashboard-startup-banner 'logo) ;; use standard emacs logo as banner
   ;;(setq dashboard-startup-banner "~/.emacs.d/emacs-dash.png")  ;; use custom image as banner
-  (setq dashboard-center-content nil) ;; set to 't' for centered content
+  (setq dashboard-center-content t) ;; set to 't' for centered content
   (setq dashboard-items '((recents . 5)
                           (agenda . 5 )
                           (bookmarks . 3)
@@ -224,6 +225,11 @@
   'org-babel-load-languages
   '((emacs-lisp . t)
     (python . t)))
+(setq org-confirm-babel-evaluate nil)
+(setq org-edit-src-content-indentation 0)
+(setq org-src-tab-acts-natively t)
+(setq python-indent-guess-indent-offset t)  
+(setq python-indent-guess-indent-offset-verbose nil)
 
 ;; Lang
 (use-package haskell-mode)
@@ -231,6 +237,12 @@
 (use-package markdown-mode)
 (use-package gdscript-mode
   :init)
+
+(use-package rjsx-mode
+  :ensure t
+  :mode "\\.js\\'")
+(use-package typescript-mode)
+
 ;;lisp
 (use-package lsp-mode
   :ensure nil
@@ -269,13 +281,51 @@
   :config (helm-mode))
 
 
+;;Magit
+(use-package magit)
+
+;;ispell
+(with-eval-after-load "ispell"
+  (setenv "LANG" "it_IT.UTF-8")
+  (setq ispell-program-name "hunspell")
+  (setq ispell-dictionary "it_IT,en_US")
+  (ispell-set-spellchecker-params)
+  (ispell-hunspell-add-multi-dic "it_IT,en_US"))
+
+;;Tamplates
+(require 'org-tempo)
+(add-to-list 'org-structure-template-alist '("py" . "src python"))
+
+;;Neotree
+(use-package neotree
+  :config
+  (setq neo-smart-open t
+        neo-window-width 30
+        neo-theme (if (display-graphic-p) 'icons 'arrow)
+        ;;neo-window-fixed-size nil
+        inhibit-compacting-font-caches t
+        projectile-switch-project-action 'neotree-projectile-action) 
+        ;; truncate long file names in neotree
+        (add-hook 'neo-after-create-hook
+           #'(lambda (_)
+               (with-current-buffer (get-buffer neo-buffer-name)
+                 (setq truncate-lines t)
+                 (setq word-wrap nil)
+                 (make-local-variable 'auto-hscroll-mode)
+                 (setq auto-hscroll-mode nil)))))
+
+(setq-default neo-show-hidden-files t)
+
+;;vterm
+(use-package vterm)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(java lsp-ui helm-lps lsp-java lisp-java auctex lsp-treemacs lisp-treeemacs company-box company lsp-mode gdscript-mode dired projectile org-bullets all-the-icons-dired which-key rainbow-delimiters doom-mode-line all-the-icons use-package doom-themes)))
+   '(vterm tide typescript-mode rjsx-mode web-mode json-mode dirtree magit java lsp-ui helm-lps lsp-java lisp-java auctex lsp-treemacs lisp-treeemacs company-box company lsp-mode gdscript-mode dired projectile org-bullets all-the-icons-dired which-key rainbow-delimiters doom-mode-line all-the-icons use-package doom-themes)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

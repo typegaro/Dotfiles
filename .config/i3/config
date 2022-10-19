@@ -186,7 +186,6 @@ client.unfocused #21242b #21242b #000000
 bindsym $mod+d exec --no-startup-id emacsclient -c --eval "(dired-jump)"
 bindsym $mod+b exec --no-startup-id emacsclient -c --eval "(ibuffer)"
 
-exec --no-startup-id albert &
 exec --no-startup-id lxsession &
 exec --no-startup-id /usr/bin/emacs --daemon &
 exec --no-startup-id nitrogen --restore &

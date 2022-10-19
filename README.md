@@ -1,6 +1,8 @@
 # Rompicapo Dotfiles
 
-## DEP
+## wayland alternative
+- rofi-lbonn-wayland-git (AUR)
+- 
 
 ### Programs
 - alacritty (Terminal)
@@ -21,8 +23,9 @@
 - pcmanfm (file manager)
 - lxappearance
 - xdotool
-- devour
+- devour (for window swallowing)
 - bat (cat alternative)
+
 ### Fonts
 -  nerd-fonts-complete (AUR)
 
