@@ -70,6 +70,8 @@ alias compose='setxkbmap -layout us -option compose:menu'
 alias sshfix='TERM=linux'
 alias cclear='clear; colorscript random | tail -n +2'
 alias search="sudo find / -iname "
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+alias parsua='paru -Sua --noconfirm' 
 #alias doc='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
 #nnn
