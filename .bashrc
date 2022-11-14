@@ -36,6 +36,9 @@ export GBM_BACKEND=nvidia-drm
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
 export WLR_NO_HARDWARE_CURSORS=1
 
+
+#nvim
+alias v='nvim'
 #git 
 alias config='/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME'
 

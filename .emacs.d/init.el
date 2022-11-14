@@ -298,6 +298,7 @@
 
 ;;Neotree
 (use-package neotree
+  :bind (("TAB" . neotree-enter))
   :config
   (setq neo-smart-open t
         neo-window-width 30
@@ -313,6 +314,7 @@
                  (setq word-wrap nil)
                  (make-local-variable 'auto-hscroll-mode)
                  (setq auto-hscroll-mode nil)))))
+
 
 (setq-default neo-show-hidden-files t)
 
