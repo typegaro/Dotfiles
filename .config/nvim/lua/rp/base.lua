@@ -70,3 +70,4 @@ g.maplocalleader = " "
 -- Color scheme
 vim.cmd [[ colorscheme doom-one ]]
 vim.cmd [[set spell spelllang=en_us,it]]
+vim.cmd [[set tw=0]]

@@ -134,6 +134,11 @@ _G.packer_plugins = {
     path = "/home/rp/.local/share/nvim/site/pack/packer/start/sxhkd-vim",
     url = "https://github.com/kovetskiy/sxhkd-vim"
   },
+  ["toggleterm.nvim"] = {
+    loaded = true,
+    path = "/home/rp/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
+    url = "https://github.com/akinsho/toggleterm.nvim"
+  },
   ["vim-css-color"] = {
     loaded = true,
     path = "/home/rp/.local/share/nvim/site/pack/packer/start/vim-css-color",

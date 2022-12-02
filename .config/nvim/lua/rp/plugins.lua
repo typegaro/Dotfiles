@@ -39,11 +39,7 @@ packer.startup(function(use)
 	use("junegunn/goyo.vim")
 	use("junegunn/limelight.vim")
 	use("junegunn/vim-emoji")
-
-    -- Style --
-    --use {'akinsho/bufferline.nvim', tag = "v3.*", 
-    --    requires = 'nvim-tree/nvim-web-devicons'}
-	
+    use("akinsho/toggleterm.nvim")
     -- coding  --
     use {'neoclide/coc.nvim', branch = 'release'}
 	use {
@@ -58,10 +54,3 @@ packer.startup(function(use)
 		packer.sync()
 	end
 end)
-require('lualine').setup{}
---require("bufferline").setup{
---    options = {
---        mode = "tabs",
---    }
---}
-

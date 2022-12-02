@@ -36,6 +36,11 @@ export GBM_BACKEND=nvidia-drm
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
 export WLR_NO_HARDWARE_CURSORS=1
 
+#latex
+alias latexclean='rm *.aux *.log'
+
+#speedreader
+alias clip-speedread='xclip -o | speedread'
 
 #nvim
 alias v='nvim'
@@ -65,7 +70,7 @@ alias code='devour code'
 #redshift
 alias red='redshift -O 4100'
 #cat
-alias cat='bat'
+alias dog='bat'
 
 #short cut
 alias bashrc='nvim ~/.bashrc'

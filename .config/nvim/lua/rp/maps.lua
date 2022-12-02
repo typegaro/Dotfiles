@@ -15,3 +15,4 @@ map('n', '<leader>mc',':!pandoc %  --pdf-engine=xelatex --highlight-style pygmen
 map('n', '<leader>lc',':!pdflatex %:r.tex<CR>',opts)
 map('n', '<leader>lr',':!rm *.aux *.log<CR>',opts)
 map('n', '<leader>lp',':!zathura %:r.pdf & <CR>',opts)
+map("n", "hh", "gqq",opts)
