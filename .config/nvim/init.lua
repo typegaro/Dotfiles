@@ -5,3 +5,4 @@ require("plugins-config.coc") -- Plugins
 require("plugins-config.treesitter")
 require("plugins-config.evil_lualine")
 require("plugins-config.toggleterm")
+require("plugins-config.nvim_tree")

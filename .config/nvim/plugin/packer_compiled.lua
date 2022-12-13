@@ -109,20 +109,20 @@ _G.packer_plugins = {
     path = "/home/rp/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
-  nerdtree = {
+  ["nvim-tree.lua"] = {
     loaded = true,
-    path = "/home/rp/.local/share/nvim/site/pack/packer/start/nerdtree",
-    url = "https://github.com/scrooloose/nerdtree"
+    path = "/home/rp/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    url = "https://github.com/nvim-tree/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/rp/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
-  ["org.vim"] = {
+  ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/home/rp/.local/share/nvim/site/pack/packer/start/org.vim",
-    url = "https://github.com/axvr/org.vim"
+    path = "/home/rp/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -153,11 +153,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/rp/.local/share/nvim/site/pack/packer/start/vim-emoji",
     url = "https://github.com/junegunn/vim-emoji"
-  },
-  ["vim-nerdtree-syntax-highlight"] = {
-    loaded = true,
-    path = "/home/rp/.local/share/nvim/site/pack/packer/start/vim-nerdtree-syntax-highlight",
-    url = "https://github.com/tiagofumo/vim-nerdtree-syntax-highlight"
   }
 }
 

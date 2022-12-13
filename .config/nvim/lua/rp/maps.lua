@@ -12,7 +12,10 @@ map("n", "<leader>tc", "<CMD>tabclose<CR>")
 
 -- latex
 map('n', '<leader>mc',':!pandoc %  --pdf-engine=xelatex --highlight-style pygments -N -o %:r.pdf<CR>',opts)
-map('n', '<leader>lc',':!pdflatex %:r.tex<CR>',opts)
-map('n', '<leader>lr',':!rm *.aux *.log<CR>',opts)
+map('n', '<leader>lc',':!pdflatex %:r.tex; rm *.aux *.log *.toc<CR>',opts)
+map('n', '<leader>lr',':!rm *.aux *.log *.toc<CR>',opts)
 map('n', '<leader>lp',':!zathura %:r.pdf & <CR>',opts)
-map("n", "hh", "gqq",opts)
+
+-- nvim tree
+
+map('n', '<leader>.',':NvimTreeToggle <CR>',opts)

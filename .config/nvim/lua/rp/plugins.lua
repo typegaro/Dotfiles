@@ -25,8 +25,6 @@ packer.startup(function(use)
 	use("nvim-lualine/lualine.nvim") -- A better statusline
 
 	-- File management --
-	use("scrooloose/nerdtree")
-	use("tiagofumo/vim-nerdtree-syntax-highlight")
 	use("ryanoasis/vim-devicons")
 
 
@@ -49,8 +47,11 @@ packer.startup(function(use)
             ts_update()
         end,
     }
-    use("axvr/org.vim")
-    if packer_bootstrap then
-		packer.sync()
-	end
+    use {
+        'nvim-tree/nvim-tree.lua',
+        requires = {
+        'nvim-tree/nvim-web-devicons', -- optional, for file icons
+        },
+        tag = 'nightly'
+    }
 end)
