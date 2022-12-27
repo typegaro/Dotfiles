@@ -6,7 +6,7 @@
 #╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚═╝     ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝      ╚═════╝
 #Config by Rompicapo
 
-colorscript random  
+#colorscript random  
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -15,8 +15,9 @@ colorscript random
 #PS1="$(prompt) →  ";
 PS1='λ → '
 
+./.local/bin/fm6000 -os Arch -c "random" -r -n 
 ### EXPORT
-export EDITOR=vim
+export EDITOR=nvim
 export VISUAL=vim
 export TERM="xterm-256color"                      # getting proper colors
 export HISTCONTROL=ignoredups:erasedups           # no duplicate entries
