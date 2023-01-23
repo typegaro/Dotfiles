@@ -60,6 +60,10 @@ keys = [
     Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+    
+     Key([mod], "Right",lazy.to_screen(1)),
+     Key([mod], "Left",lazy.to_screen(0)),
+
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod], "f",lazy.window.toggle_fullscreen(),desc="Toggle fullscreen",),
     # Toggle between split and unsplit sides of stack.
@@ -79,7 +83,7 @@ keys = [
     Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    #Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -181,11 +185,35 @@ screens = [
                        padding = 0,
                        scale = 0.7
                        ),
-                widget.Prompt(),
+                widget.Prompt( 
+                ),
                 widget.WindowName(
                        foreground = colors[6],
                        background = colors[0],
                        padding =30
+                       ),
+                widget.Pomodoro(
+                    color_active = colors[4],
+                    color_inactive= colors[3],
+                    color_break = colors[8],
+                    prefix_inactive =" Pomodoro",
+                    prefix_active = "  ",
+                    prefix_paused = " Pause",
+                    prefix_break = " Break",
+                    prefix_long_break = " L. Break",
+                    decorations=[
+                            BorderDecoration(
+                               colour = colors[3],
+                               border_width = [0, 0, 2, 0],
+                               padding_x = 5,
+                               padding_y = None,
+                           ),],
+                ),
+                widget.Sep(
+                       linewidth = 0,
+                       padding = 6,
+                       foreground = colors[0],
+                       background = colors[0]
                        ),
                 widget.CheckUpdates(
                        update_interval = 1800,
@@ -331,9 +359,13 @@ screens = [
 
 groups.append(ScratchPad('scratchpad', [
                              DropDown('term', "alacritty", width=0.4, height=0.5,x=0.3,y=0.2,opacity=1),
+                             DropDown('ranger', "alacritty -e ranger", width=0.4, height=0.5,x=0.3,y=0.2,opacity=1),
+                             DropDown('topydo', "alacritty -e topydo &", width=0.4, height=0.5,x=0.3,y=0.2,opacity=1),
                          ]))
 keys.extend([
                 Key([mod,], "s",lazy.group['scratchpad'].dropdown_toggle('term')),
+                Key([mod,], "r",lazy.group['scratchpad'].dropdown_toggle('ranger')),
+                Key([mod,], "a",lazy.group['scratchpad'].dropdown_toggle('topydo')),
             ])
 
 # Drag floating layouts.

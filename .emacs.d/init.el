@@ -89,6 +89,7 @@
        "l p" '(org-latex-preview :which-key "show latex in line")
        "o i t" '(org-toggle-inline-images :which-key "toggle in line img")
        "s c" '(flyspell-mode :which-key "Active spell check")
+       "o b" '(org-babel-execute-src-block :which-key "run src code")
        ;;org-agenda
        "o a"   '(org-agenda :which-key "Org agenda")
        "a l" '(org-agenda-list :which-key "Org agenda list")
@@ -125,11 +126,13 @@
   (setq evil-vsplit-window-right t)
   (setq evil-split-window-below t)
   (evil-mode))
+
 (use-package evil-collection
   :after evil
   :config
   (setq evil-collection-mode-list '(dashboard dired ibuffer))
   (evil-collection-init))
+
 (use-package evil-tutor)
 
 ;;Rainbow-delimiters
@@ -144,6 +147,15 @@
   (setq wich-key-idle-delay 0.3))
 
 ;;Dired
+(use-package dired
+  :ensure nil
+  :commands (dired dired-jump)
+  :custom ((dired-listing-switches "-agho --group-directories-first"))
+  :config
+  (evil-collection-define-key 'normal 'dired-mode-map
+   "h" 'dired-up-directory
+   "l" 'dired-find-file))
+
 (use-package all-the-icons-dired
   :ensure t
   :init (setq all-the-icons-dired-monochrome nil))

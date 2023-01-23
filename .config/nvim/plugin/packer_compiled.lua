@@ -149,6 +149,11 @@ _G.packer_plugins = {
     path = "/home/rp/.local/share/nvim/site/pack/packer/start/vim-devicons",
     url = "https://github.com/ryanoasis/vim-devicons"
   },
+  ["vim-dotoo"] = {
+    loaded = true,
+    path = "/home/rp/.local/share/nvim/site/pack/packer/start/vim-dotoo",
+    url = "https://github.com/dhruvasagar/vim-dotoo"
+  },
   ["vim-emoji"] = {
     loaded = true,
     path = "/home/rp/.local/share/nvim/site/pack/packer/start/vim-emoji",

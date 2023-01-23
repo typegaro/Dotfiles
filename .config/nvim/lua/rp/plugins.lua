@@ -38,6 +38,8 @@ packer.startup(function(use)
 	use("junegunn/limelight.vim")
 	use("junegunn/vim-emoji")
     use("akinsho/toggleterm.nvim")
+    
+    use("dhruvasagar/vim-dotoo")
     -- coding  --
     use {'neoclide/coc.nvim', branch = 'release'}
 	use {
