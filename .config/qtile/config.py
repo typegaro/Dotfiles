@@ -26,7 +26,7 @@
 import os, subprocess
 from libqtile import qtile
 from libqtile import bar, layout, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, KeyChord
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from qtile_extras import widget
@@ -61,8 +61,8 @@ keys = [
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     
-     Key([mod], "Right",lazy.to_screen(1)),
-     Key([mod], "Left",lazy.to_screen(0)),
+    Key([mod], "Right",lazy.to_screen(0)),
+    Key([mod], "Left",lazy.to_screen(1)),
 
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod], "f",lazy.window.toggle_fullscreen(),desc="Toggle fullscreen",),
@@ -77,6 +77,7 @@ keys = [
         desc="Toggle between split and unsplit sides of stack",
     ),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    #Key([mod], "e", lazy.spawn("emacsclient -c -a emacs"), desc="Launch terminal"),
     Key([mod], "z", lazy.spawn("rofi -show run"), desc="Launch terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
@@ -84,7 +85,26 @@ keys = [
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     #Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    KeyChord([mod],"e", [
+             Key([], "e",
+                 lazy.spawn("emacsclient -c -a 'emacs'"),
+                 desc='Emacsclient Dashboard'
+                 ),
+             Key([], "b",
+                 lazy.spawn("emacsclient -c -a 'emacs' --eval '(ibuffer)'"),
+                 desc='Emacsclient Ibuffer'
+                 ),
+             Key([], "d",
+                 lazy.spawn("emacsclient -c -a 'emacs' --eval '(dired nil)'"),
+                 desc='Emacsclient Dired'
+                 ),
+             Key([], "t",
+                 lazy.spawn("emacsclient -c -a 'emacs' --eval '(org-tags-view)'"),
+                 desc='Emacsclient Eshell'
+                 )
+         ]),
 ]
+
 
 groups = [Group(i) for i in "123456789"]
 

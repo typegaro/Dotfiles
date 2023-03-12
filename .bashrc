@@ -55,7 +55,7 @@ export SDL_IM_MODULE='fcitx'
 export XMODIFIERS='@im=fcitx'
 
 #andoird
-alias phone='emulator -avd Pixel_3a_API_33_x86_64'
+alias phone='~/Android/Sdk/tools/emulator -avd Pixel_3a_API_33_x86_64'
 alias phone-list='emulator -list-avds'
 
 # utility 
@@ -169,3 +169,7 @@ ex ()
 }
 
 eval "$(starship init bash)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

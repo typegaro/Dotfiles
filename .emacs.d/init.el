@@ -77,7 +77,8 @@
        "d d" '(dired :which-key "Open dired")
        "d j" '(dired-jump :which-key "Dired jump to current")
        ;;Window
-       "w s"   '(evil-window-vsplit :which-key "Open vertical split")
+       "v s"   '(evil-window-vsplit :which-key "Open vertical split")
+       "h s"   '(evil-window-split :which-key "Open horizontal split")
        "w w"   '(evil-window-next :which-key "Move to the next window")
        "w t"   '(term :which-key "Run terminal")
        
@@ -93,7 +94,7 @@
        ;;org-agenda
        "o a"   '(org-agenda :which-key "Org agenda")
        "a l" '(org-agenda-list :which-key "Org agenda list")
-       "t l"   '(org-todo-list :which-key "Org tasks")
+       "t l"   '(org-tags-view :which-key "Org tasks")
        ;;code 
        "c c"   '(company-mode :which-key "Active IDE")
        )
@@ -135,6 +136,7 @@
 
 (use-package evil-tutor)
 
+
 ;;Rainbow-delimiters
 (use-package rainbow-delimiters
   :hook (prog-mod . rainbow-delimiters-mode ))
@@ -165,6 +167,10 @@
                               ("png" . "sxiv")
                               ("mkv" . "mpv")
                               ("mp4" . "mpv")))
+
+(use-package all-the-icons-ibuffer
+  :ensure t
+  :hook (ibuffer-mode . all-the-icons-ibuffer-mode))
 
 ;;Org-mode
 
@@ -231,6 +237,7 @@
   (dashboard-setup-startup-hook)
   (dashboard-modify-heading-icons '((recents . "file-text")
 			      (bookmarks . "book"))))
+(setq initial-buffer-choice #'(lambda () (get-buffer-create "*dashboard*")))
 
 ;;Org bable
 (org-babel-do-load-languages
@@ -339,7 +346,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(vterm tide typescript-mode rjsx-mode web-mode json-mode dirtree magit java lsp-ui helm-lps lsp-java lisp-java auctex lsp-treemacs lisp-treeemacs company-box company lsp-mode gdscript-mode dired projectile org-bullets all-the-icons-dired which-key rainbow-delimiters doom-mode-line all-the-icons use-package doom-themes)))
+   '(evil-collection-doc-view vterm tide typescript-mode rjsx-mode web-mode json-mode dirtree magit java lsp-ui helm-lps lsp-java lisp-java auctex lsp-treemacs lisp-treeemacs company-box company lsp-mode gdscript-mode dired projectile org-bullets all-the-icons-dired which-key rainbow-delimiters doom-mode-line all-the-icons use-package doom-themes)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
