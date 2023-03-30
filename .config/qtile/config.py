@@ -61,8 +61,8 @@ keys = [
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     
-    Key([mod], "Right",lazy.to_screen(0)),
-    Key([mod], "Left",lazy.to_screen(1)),
+    Key([mod], "Right",lazy.to_screen(1)),
+    Key([mod], "Left",lazy.to_screen(0)),
 
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod], "f",lazy.window.toggle_fullscreen(),desc="Toggle fullscreen",),
@@ -148,8 +148,8 @@ layouts = [
     # layout.Zoomy(),
 ]
 
-colors = [["#282c34", "#282c34"],
-          ["#1c1f24", "#1c1f24"],
+colors = [["#282c34.1", "#282c34"],
+          ["#1c1f24.1", "#1c1f24"],
           ["#dfdfdf", "#dfdfdf"],
           ["#ff6c6b", "#ff6c6b"],
           ["#98be65", "#98be65"],
@@ -174,28 +174,20 @@ screens = [
         top=bar.Bar(
             [
                 
-                widget.Image(
-                       filename = "~/.config/qtile/icons/python.png",
-                       scale = "False",
-                       ),
+                widget.QuickExit(default_text=' ',countdown_format = '{}', foreground=colors[3]),
                 widget.GroupBox(
                        font = "Ubuntu Bold",
                        fontsize = 13,
-                       margin_y = 3,
-                       margin_x = 0,
-                       padding_y = 5,
-                       padding_x = 3,
-                       borderwidth = 3,
-                       active = colors[2],
-                       inactive = colors[7],
-                       rounded = False,
-                       highlight_color = colors[1],
-                       highlight_method = "line",
-                       this_current_screen_border = colors[6],
-                       this_screen_border = colors [4],
-                       other_current_screen_border = colors[6],
-                       other_screen_border = colors[4],
+                       borderwidth = 0,
+                       active = colors[7],
+                       inactive = colors[2],
                        foreground = colors[2],
+                       background = colors[0]
+                       ),
+                widget.Sep(
+                       linewidth = 0,
+                       padding = 8,
+                       foreground = colors[0],
                        background = colors[0]
                        ),
                 widget.CurrentLayoutIcon(
@@ -203,32 +195,15 @@ screens = [
                        foreground = colors[2],
                        background = colors[0],
                        padding = 0,
-                       scale = 0.7
+                       scale = 0.5
                        ),
                 widget.Prompt( 
                 ),
                 widget.WindowName(
-                       foreground = colors[6],
+                       foreground = colors[2],
                        background = colors[0],
                        padding =30
                        ),
-                widget.Pomodoro(
-                    color_active = colors[4],
-                    color_inactive= colors[3],
-                    color_break = colors[8],
-                    prefix_inactive =" Pomodoro",
-                    prefix_active = "  ",
-                    prefix_paused = " Pause",
-                    prefix_break = " Break",
-                    prefix_long_break = " L. Break",
-                    decorations=[
-                            BorderDecoration(
-                               colour = colors[3],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           ),],
-                ),
                 widget.Sep(
                        linewidth = 0,
                        padding = 6,
@@ -239,21 +214,12 @@ screens = [
                        update_interval = 1800,
                        distro = "Arch_checkupdates",
                        display_format = "  {updates} ",
-                       foreground = colors[5],
-                       colour_have_updates = colors[5],
-                       colour_no_updates = colors[5],
+                       foreground = colors[2],
+                       colour_have_updates = colors[2],
+                       colour_no_updates = colors[2],
                        padding = 5,
                        background = colors[0],
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[5],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
                        ),
-
               widget.Sep(
                        linewidth = 0,
                        padding = 6,
@@ -261,19 +227,12 @@ screens = [
                        background = colors[0]
                        ),
                 widget.ThermalSensor(
-                       foreground = colors[4],
+                       foreground = colors[2],
                        background = colors[0],
                        threshold = 90,
                        fmt = ' {}',
                        padding = 5,
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[4],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
+                       
                        ),
                 widget.Sep(
                        linewidth = 0,
@@ -282,18 +241,10 @@ screens = [
                        background = colors[0],
                        ),
                 widget.CPU(
-                       foreground = colors[8],
+                       foreground = colors[2],
                        background = colors[0],
                        padding = 5,
                        format ='  {load_percent}%',
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[8],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
                 ),
                 widget.Sep(
                        linewidth = 0,
@@ -302,19 +253,12 @@ screens = [
                        background = colors[0]
                        ),
                 widget.Memory(
-                       foreground = colors[9],
+                       foreground = colors[2],
                        background = colors[0],
                        measure_mem='G',
                        fmt = ' {}',
                        padding = 5,
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[9],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
+                       
                        ),
                 widget.Sep(
                        linewidth = 0,
@@ -323,18 +267,10 @@ screens = [
                        background = colors[0]
                        ),
                 widget.Volume(
-                       foreground = colors[7],
+                       foreground = colors[2],
                        background = colors[0],
                        fmt = '  {}',
                        padding = 5,
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[7],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
                        ),
                 widget.Sep(
                        linewidth = 0,
@@ -343,36 +279,19 @@ screens = [
                        background = colors[0]
                        ),
                 widget.Clock(
-                       foreground = colors[6],
+                       foreground = colors[2],
                        background = colors[0],
-                       format = "%A, %B %d - %H:%M ",
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[6],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
-
+                       format = "%A %d %B  - %H:%M ",
                        ),
-                widget.QuickExit(default_text='',countdown_format = '{}', foreground=colors[3],
-                        decorations=[
-                            BorderDecoration(
-                               colour = colors[3],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],),
                 widget.Sep(
                        linewidth = 0,
-                       padding = 6,
+                       padding = 8,
                        foreground = colors[0],
                        background = colors[0]
                        ),
             ],
             22,
+            background="#000000.3"
         ),
     ), 
 ]
