@@ -2,7 +2,6 @@
 
 ## wayland alternative
 - rofi-lbonn-wayland-git (AUR)
-- 
 
 ### Programs
 - alacritty (Terminal)
