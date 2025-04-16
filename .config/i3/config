@@ -1,15 +1,18 @@
 set $mod Mod1
+set $web "zen-browser" 
+#set $term "ghostty"
+set $term "alacritty"
 
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 1
 default_border pixel 0
-gaps inner 6
+gaps inner 0
+hide_edge_borders smart
 
 #NOTIFICATION ALLERT
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:Mononoki Nerd Font 10
-
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -46,41 +49,40 @@ for_window [con_mark="floating_terminal"] floating enable, resize set 800 600, m
 for_window [con_mark="centered"] floating enable, resize set 950 1020, move position center
 
 
-for_window [class="media"] move scratchpad,resize set 800 600
+for_window [class="musica"] move scratchpad,resize set 800 600
+for_window [class="termial"] move scratchpad,resize set 800 600
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 #emacs
-bindsym $mod+Return exec alacritty
-bindsym $mod+Shift+Return exec alacritty -e sh -c "./Scripts/tmux_open_project.sh"
+bindsym $mod+Return exec $term 
+bindsym $mod+Shift+Return exec ghostty -e sh -c "./Scripts/tmux_open_project.sh"
 bindsym $mod+Shift+c kill
-bindsym $mod+z exec --no-startup-id rofi -show drun -theme doomone
+#bindsym $mod+z exec --no-startup-id rofi -show drun -theme doomone
+bindsym $mod+z exec --no-startup-id dmenu_run
+
 #bindsym $mod+Shift+e exec --no-startup-id sh -c 'XMODIFIERS="" exec emacs'
 
-bindsym $mod+Shift+m mode "media"
+bindsym $mod+Shift+i exec --no-startup-id sh -c 'notify-send -t 2000 "Info" " $(date "+%H:%M") \n $(date "+%d-%m-%Y")"'
+
+
+
+bindsym $mod+Shift+v mode "media"
 mode "media" {
     bindsym k exec --no-startup-id amixer set Master 5%+ unmute
     bindsym j exec --no-startup-id amixer set Master 5%- unmute
     bindsym p exec --no-startup-id playerctl play-pause , mode "default"
     bindsym s exec --no-startup-id ~/Scripts/dmenu_audio_output.sh, mode "default"
     bindsym v exec --no-startup-id mpv "$(xclip -o -selection clipboard)", mode "default"
-    bindsym m exec --no-startup-id alacritty --class "media" -e bash -c 'mpv --no-video --volume=34 "$(xclip -o -selection clipboard)" && i3-msg move scratchpad', mode "default"
-    bindsym t exec --no-startup-id Scripts/i3_toggle_scratchpad.sh media, mode "default"
     bindsym Escape mode "default"
 }
 
-set $web "firefox-nightly" 
-bindsym $mod+Shift+s mode "search"
-mode "search" {
-    bindsym w exec --no-startup-id $web, mode "default" 
-    bindsym q exec --no-startup-id  ~/Scripts/dmenu_web_search.sh $web, mode "default"
-    bindsym Escape mode "default"
-}
+bindsym $mod+Shift+s exec --no-startup-id Scripts/i3_toggle_scratchpad.sh termial
 
 bindsym $mod+Shift+u mode "utiliy"
 mode "utiliy" {
     bindsym s exec --no-startup-id flameshot gui, mode "default" 
-    bindsym w exec --no-startup-id nitrogen --random ~/Immagini/art --set-zoom-fill --head=0 &, mode "default" 
+    bindsym w exec --no-startup-id nitrogen --random ~/Immagini/art --set-zoom-fill --head=0 & 
 
     bindsym c floating enable, resize set 950 1020, move position center,mode "default"
 
@@ -93,6 +95,23 @@ mode "window" {
     bindsym Escape mode "default"
 }
 
+bindsym $mod+Shift+m mode "mouse"
+mode "mouse" {
+    bindsym h exec --no-startup-id xdotool mousemove_relative -- -20 0
+    bindsym j exec --no-startup-id xdotool mousemove_relative -- 0 20
+    bindsym k exec --no-startup-id xdotool mousemove_relative -- 0 -20
+    bindsym l exec --no-startup-id xdotool mousemove_relative -- 20 0
+
+    bindsym Shift+h exec --no-startup-id xdotool mousemove_relative -- -100 0
+    bindsym Shift+j exec --no-startup-id xdotool mousemove_relative -- 0 100
+    bindsym Shift+k exec --no-startup-id xdotool mousemove_relative -- 0 -100
+    bindsym Shift+l exec --no-startup-id xdotool mousemove_relative -- 100 0
+    bindsym space exec --no-startup-id xdotool click 1
+    bindsym Escape mode "default"
+}
+
+# Attiva modalità mouse con Mod+m
+bindsym $mod+m mode "mouse"
 
 # change focus
 bindsym $mod+h focus left
@@ -138,9 +157,9 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 
-set $ws1 "1:一"
-set $ws2 "2:二"
-set $ws3 "3:三"
+set $ws1 "1:nvim"
+set $ws2 "2:web"
+set $ws3 "3:term"
 set $ws4 "4:四"
 set $ws5 "5:五"
 set $ws6 "6:六"
@@ -173,8 +192,6 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-workspace 10 output DP-5
-
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart&& reload
 # exit i3 (logs you out of your X session)
@@ -204,35 +221,34 @@ client.focused #000000 #c678dd #000000
 client.unfocused #21242b #21242b #000000    
 
 bar {
-    i3bar_command i3bar --transparency
+    i3bar_command i3bar 
     strip_workspace_numbers yes
     status_command SCRIPT_DIR=~/.config/i3blocks/scripts i3blocks
-    position bottom
+    position top
 
-    font pango:Mononoki Nerd Font 9 bold
+    font pango:Mononoki Nerd Font bold 10
     colors {
-        background #282C3400
+        background #282C34
         statusline #ffffff
-        separator #ffffff
+        separator #282C34
         #<colorclass> <border> <background> <text>
-        focused_workspace  #282C3400 #282C3400 #C678DD
-        active_workspace   #282C3400 #282C3400 #ffffff
-        inactive_workspace #282C3400 #282C3400 #ffffff
-        urgent_workspace   #2f343a00 #90000000 #ffffff
-        binding_mode       #2f343a00 #90000000 #ffffff
+        focused_workspace  #282C34 #282C34 #C678DD
+        active_workspace   #282C34 #282C34 #ffffff
+        inactive_workspace #282C34 #282C34 #ffffff
+        urgent_workspace   #2f343a #900000 #ffffff
+        binding_mode       #2f343a #900000 #ffffff
     }
     tray_output HDMI-0
     
 }
-
+workspace 10 output eDP-5
 
 exec --no-startup-id lxsession &
 exec --no-startup-id dunst &
-exec --no-startup-id polkit &
+#exec --no-startup-id polkit &
 exec --no-startup-id picom &
 exec --no-startup-id sh ~/.screenlayout/vertical.sh &
 exec --no-startup-id nitrogen --restore &
 exec --no-startup-id redshift -O 4500 &
 exec --no-startup-id fcitx -d
-exec --no-startup-id nitrogen --random ~/Immagini/art --set-zoom-fill --head=0 &
-exec --no-startup-id nitrogen --random ~/Immagini/art --set-zoom-fill --head=1 &
+exec --no-startup-id sh ~/Scripts/keyboard.sh 

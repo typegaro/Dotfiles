@@ -1,0 +1,50 @@
+separator_block_width=15
+markup=none
+
+[module/archlogo]
+type = custom/text
+content = ""
+content-foreground =
+content-background =
+
+[docker_containers]
+command=docker ps -q | wc -l
+label=🐳
+interval=60
+
+[running_processes]
+command=ps aux | wc -l
+label=💻
+interval=60
+
+[updates]
+command=echo "$(pacman -Qu | wc -l) $(paru -Qu --aur | wc -l)"
+label=📦
+interval=3600
+
+[disk_usage]
+command=df -h /home/ldg | awk 'NR==2 {print $3 " / " $2}'
+label=💾
+interval=3600
+
+
+[ram_usage]
+command=free | grep Mem | awk '{print sprintf("%.1f", $3/1024/1024) " GB"}'
+label=🧠
+interval=10
+
+[temperature]
+command=sensors | grep 'Core 0' | awk '{print $3}'
+label=🌡️
+interval=10
+
+[cpu_usage]
+command=top -bn1 | grep 'Cpu(s)' | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print $1 "%"}'
+label=⚡
+interval=10
+
+[time]
+command=date '+%Y-%m-%d %H:%M'
+label=🕓
+interval=30
+
