@@ -1,5 +1,5 @@
 set $mod Mod1
-set $web "zen-browser" 
+set $web "brave" 
 #set $term "ghostty"
 set $term "alacritty"
 
@@ -59,7 +59,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec ghostty -e sh -c "./Scripts/tmux_open_project.sh"
 bindsym $mod+Shift+c kill
 #bindsym $mod+z exec --no-startup-id rofi -show drun -theme doomone
-bindsym $mod+z exec --no-startup-id dmenu_run
+bindsym $mod+s exec --no-startup-id dmenu_run
 
 #bindsym $mod+Shift+e exec --no-startup-id sh -c 'XMODIFIERS="" exec emacs'
 
@@ -127,6 +127,8 @@ bindsym $mod+Shift+l move right
 
 bindsym $mod+Shift+Left move workspace to output left
 bindsym $mod+Shift+Right move workspace to output right
+bindsym $mod+Shift+Up move workspace to output up
+bindsym $mod+Shift+Down move workspace to output down
 
 # split in horizontal orientation
 bindsym $mod+b split h
@@ -157,10 +159,12 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 
+bindsym $mod+w exec --no-startup-id $web   
+
 set $ws1 "1:nvim"
 set $ws2 "2:web"
-set $ws3 "3:term"
-set $ws4 "4:四"
+set $ws3 "3:doc"
+set $ws4 "4:term"
 set $ws5 "5:五"
 set $ws6 "6:六"
 set $ws7 "7:七"
@@ -238,17 +242,17 @@ bar {
         urgent_workspace   #2f343a #900000 #ffffff
         binding_mode       #2f343a #900000 #ffffff
     }
-    tray_output HDMI-0
+    tray_output DP-3
     
 }
-workspace 10 output eDP-5
+workspace 5 output HDMI-0 
 
 exec --no-startup-id lxsession &
 exec --no-startup-id dunst &
 #exec --no-startup-id polkit &
+exec --no-startup-id sh ~/.screenlayout/normal.sh &
 exec --no-startup-id picom &
-exec --no-startup-id sh ~/.screenlayout/vertical.sh &
 exec --no-startup-id nitrogen --restore &
 exec --no-startup-id redshift -O 4500 &
-exec --no-startup-id fcitx -d
+#exec --no-startup-id fcitx -d
 exec --no-startup-id sh ~/Scripts/keyboard.sh 
