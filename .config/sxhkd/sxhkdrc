@@ -1,0 +1,9 @@
+alt + shift + Return
+    alacritty -e ~/Scripts/projects.sh
+
+alt + shift + w
+    ~/Scripts/bookmarks.sh
+
+alt + Escape
+    pkill -USR1 -x sxhkd
+
