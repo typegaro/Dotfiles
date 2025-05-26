@@ -1,6 +1,5 @@
 set $mod Mod1
 set $web "brave" 
-#set $term "ghostty"
 set $term "alacritty"
 
 for_window [class="^.*"] border pixel 1
@@ -54,18 +53,14 @@ for_window [class="termial"] move scratchpad,resize set 800 600
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-#emacs
+
 bindsym $mod+Return exec $term 
-bindsym $mod+Shift+Return exec ghostty -e sh -c "./Scripts/tmux_open_project.sh"
 bindsym $mod+Shift+c kill
-#bindsym $mod+z exec --no-startup-id rofi -show drun -theme doomone
 bindsym $mod+s exec --no-startup-id dmenu_run
 
-#bindsym $mod+Shift+e exec --no-startup-id sh -c 'XMODIFIERS="" exec emacs'
-
-bindsym $mod+Shift+i exec --no-startup-id sh -c 'notify-send -t 2000 "Info" " $(date "+%H:%M") \n $(date "+%d-%m-%Y")"'
-
-
+#Scripts
+#bindsym $mod+Shift+Return exec alacritty -e ./Scripts/projects.sh
+#bindsym $mod+Shift+w exec ./Scripts/bookmarks.sh
 
 bindsym $mod+Shift+v mode "media"
 mode "media" {
@@ -88,30 +83,6 @@ mode "utiliy" {
 
     bindsym Escape mode "default"
 }
-
-bindsym $mod+Shift+w mode "window"
-mode "window" {
-    bindsym c floating enable, resize set 950 1020, move position center,mode "default"
-    bindsym Escape mode "default"
-}
-
-bindsym $mod+Shift+m mode "mouse"
-mode "mouse" {
-    bindsym h exec --no-startup-id xdotool mousemove_relative -- -20 0
-    bindsym j exec --no-startup-id xdotool mousemove_relative -- 0 20
-    bindsym k exec --no-startup-id xdotool mousemove_relative -- 0 -20
-    bindsym l exec --no-startup-id xdotool mousemove_relative -- 20 0
-
-    bindsym Shift+h exec --no-startup-id xdotool mousemove_relative -- -100 0
-    bindsym Shift+j exec --no-startup-id xdotool mousemove_relative -- 0 100
-    bindsym Shift+k exec --no-startup-id xdotool mousemove_relative -- 0 -100
-    bindsym Shift+l exec --no-startup-id xdotool mousemove_relative -- 100 0
-    bindsym space exec --no-startup-id xdotool click 1
-    bindsym Escape mode "default"
-}
-
-# Attiva modalità mouse con Mod+m
-bindsym $mod+m mode "mouse"
 
 # change focus
 bindsym $mod+h focus left
@@ -245,7 +216,7 @@ bar {
     tray_output DP-3
     
 }
-workspace 5 output HDMI-0 
+#workspace 5 output HDMI-0 
 
 exec --no-startup-id lxsession &
 exec --no-startup-id dunst &

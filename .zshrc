@@ -78,6 +78,11 @@ zffs() {
   devour zathura "$(find . -type f -iname '*.pdf' | grep -i "$1" | fzf)"
 }
 
+#Python
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh

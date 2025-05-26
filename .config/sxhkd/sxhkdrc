@@ -6,4 +6,15 @@ alt + shift + w
 
 alt + Escape
     pkill -USR1 -x sxhkd
+    sxhkd
 
+alt + shift + e 
+     ~/Scripts/config.sh
+
+alt + shift + m; {space,j,k}
+    {playerctl play-pause,~/Scripts/run-notify.sh "amixer set Master 5%- unmute" "Volume dowm",~/Scripts/run-notify.sh "amixer set Master 5%+ unmute" "Volume up"}
+
+alt + shift + d; {m,u} 
+    {~/Scripts/mount.sh,~/Scripts/umount.sh}
+
+    
