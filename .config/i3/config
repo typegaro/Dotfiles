@@ -2,7 +2,7 @@ set $mod Mod1
 set $web "brave" 
 set $term "alacritty"
 
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 1 
 default_border pixel 0
 gaps inner 0
 hide_edge_borders smart
@@ -58,29 +58,11 @@ bindsym $mod+Return exec $term
 bindsym $mod+Shift+c kill
 bindsym $mod+s exec --no-startup-id dmenu_run
 
-#Scripts
-#bindsym $mod+Shift+Return exec alacritty -e ./Scripts/projects.sh
-#bindsym $mod+Shift+w exec ./Scripts/bookmarks.sh
-
-bindsym $mod+Shift+v mode "media"
-mode "media" {
-    bindsym k exec --no-startup-id amixer set Master 5%+ unmute
-    bindsym j exec --no-startup-id amixer set Master 5%- unmute
-    bindsym p exec --no-startup-id playerctl play-pause , mode "default"
-    bindsym s exec --no-startup-id ~/Scripts/dmenu_audio_output.sh, mode "default"
-    bindsym v exec --no-startup-id mpv "$(xclip -o -selection clipboard)", mode "default"
-    bindsym Escape mode "default"
-}
-
-bindsym $mod+Shift+s exec --no-startup-id Scripts/i3_toggle_scratchpad.sh termial
-
 bindsym $mod+Shift+u mode "utiliy"
 mode "utiliy" {
     bindsym s exec --no-startup-id flameshot gui, mode "default" 
-    bindsym w exec --no-startup-id nitrogen --random ~/Immagini/art --set-zoom-fill --head=0 & 
-
+    bindsym w exec --no-startup-id nitrogen --random ~/Immagini/art --set-zoom-fill --head=1 & 
     bindsym c floating enable, resize set 950 1020, move position center,mode "default"
-
     bindsym Escape mode "default"
 }
 
@@ -129,8 +111,6 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-
-bindsym $mod+w exec --no-startup-id $web   
 
 set $ws1 "1:nvim"
 set $ws2 "2:web"
@@ -201,21 +181,24 @@ bar {
     status_command SCRIPT_DIR=~/.config/i3blocks/scripts i3blocks
     position top
 
-    font pango:Mononoki Nerd Font bold 10
+    # Usa Mononoki Nerd Font bold, dimensione 10, con Pango per supporto icone
+    font pango:Mononoki Nerd Font Bold 10
+
     colors {
         background #282C34
         statusline #ffffff
         separator #282C34
-        #<colorclass> <border> <background> <text>
+        # <colorclass> <border> <background> <text>
         focused_workspace  #282C34 #282C34 #C678DD
         active_workspace   #282C34 #282C34 #ffffff
         inactive_workspace #282C34 #282C34 #ffffff
         urgent_workspace   #2f343a #900000 #ffffff
         binding_mode       #2f343a #900000 #ffffff
     }
-    tray_output DP-3
     
+    tray_output DP-3
 }
+
 #workspace 5 output HDMI-0 
 
 exec --no-startup-id lxsession &
@@ -227,3 +210,4 @@ exec --no-startup-id nitrogen --restore &
 exec --no-startup-id redshift -O 4500 &
 #exec --no-startup-id fcitx -d
 exec --no-startup-id sh ~/Scripts/keyboard.sh 
+exec --no-startup-id sxhkd

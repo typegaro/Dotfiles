@@ -1,6 +1,9 @@
 alt + shift + Return
     alacritty -e ~/Scripts/projects.sh
 
+alt + w 
+    ~/Scripts/run-notify.sh "brave" "Brave starting"
+
 alt + shift + w
     ~/Scripts/bookmarks.sh
 
@@ -11,10 +14,15 @@ alt + Escape
 alt + shift + e 
      ~/Scripts/config.sh
 
-alt + shift + m; {space,j,k}
-    {playerctl play-pause,~/Scripts/run-notify.sh "amixer set Master 5%- unmute" "Volume dowm",~/Scripts/run-notify.sh "amixer set Master 5%+ unmute" "Volume up"}
+alt + shift + m; {space,j,k,p,d}
+    {playerctl play-pause,~/Scripts/run-notify.sh "amixer set Master 5%- unmute" "Volume dowm",~/Scripts/run-notify.sh "amixer set Master 5%+ unmute" "Volume up", mpv --no-video --volume=50 "$(xclip -selection clipboard -o)",~/Scripts/run-notify.sh "killall mpv" "mpv killed"}
 
 alt + shift + d; {m,u} 
     {~/Scripts/mount.sh,~/Scripts/umount.sh}
 
+alt + shift + f;  
+    alacritty -e lf
+
+alt + shift + t; {m}
+    {pactl set-source-mute @DEFAULT_SOURCE@ toggle}
     

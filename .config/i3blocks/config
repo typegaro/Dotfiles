@@ -1,50 +1,78 @@
 separator_block_width=15
 markup=none
 
-[module/archlogo]
-type = custom/text
-content = ""
-content-foreground =
-content-background =
+[random]
+command=echo -e "\n\n\n\n\n\n\n\n\n󱙷\n󱔎" | shuf -n1
+interval=60
+color=#a9a1e1
+
+[player]
+command=playerctl metadata --format '  {{ artist }} - {{ title }}' || echo "  No music"
+interval=5
+color=#b48ead
+
+[mic]
+command=pactl get-source-mute @DEFAULT_SOURCE@ | grep -q yes && echo "" || echo ""
+color=#ff6c6b
+interval=2
+
+[volume]
+command=pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}'
+label=  
+color=#98be65
+interval=60
 
 [docker_containers]
 command=docker ps -q | wc -l
-label=🐳
+label=  
+color=#98be65
 interval=60
 
 [running_processes]
 command=ps aux | wc -l
-label=💻
+label=  
+color=#ecbe7b
 interval=60
 
 [updates]
-command=echo "$(pacman -Qu | wc -l) $(paru -Qu --aur | wc -l)"
-label=📦
+command=echo "$(paru -Qu --aur | wc -l)"
+label=  
+color=#ff6c6b
 interval=3600
 
 [disk_usage]
-command=df -h /home/ldg | awk 'NR==2 {print $3 " / " $2}'
-label=💾
+command=df -h / | awk 'NR==2 {print $3 " / " $2}'
+label=󰉉 
+color=#c678dd
 interval=3600
-
-
-[ram_usage]
-command=free | grep Mem | awk '{print sprintf("%.1f", $3/1024/1024) " GB"}'
-label=🧠
-interval=10
 
 [temperature]
 command=sensors | grep 'Core 0' | awk '{print $3}'
-label=🌡️
+label= 
+color=#46d9ff
+interval=10
+
+[ram_usage]
+command=free | grep Mem | awk '{print sprintf("%.1f", $3/1024/1024) " GB"}'
+label=RAM 
+color=#98be65
 interval=10
 
 [cpu_usage]
 command=top -bn1 | grep 'Cpu(s)' | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print $1 "%"}'
-label=⚡
+label=CPU 
+color=#ff6c6b
+interval=10
+
+[gpu_usage]
+command=nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits | awk '{print $1 "%"}'
+label=GPU 
+color=#c678dd
 interval=10
 
 [time]
 command=date '+%Y-%m-%d %H:%M'
-label=🕓
+label=  
+color=#51afef
 interval=30
 
